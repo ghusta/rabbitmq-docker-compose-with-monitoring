@@ -32,6 +32,8 @@ To make a quick test, you can check the `rabbitmq_queues` metric here : http://l
 Open Grafana instance in browser : http://localhost:3000/ +
 Go to dashboards and open _RabbitMQ_ folder : http://localhost:3000/dashboards
 
+The following dashboard is preinstalled : https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/[RabbitMQ-Overview]
+
 == References
 
 === Documentation

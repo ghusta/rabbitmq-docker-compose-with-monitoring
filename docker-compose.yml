@@ -1,0 +1,26 @@
+
+services:
+
+  # Default ports : see https://www.rabbitmq.com/networking.html#ports
+  rabbitmq:
+    image: rabbitmq:3
+    ports:
+      - "5672:5672"
+      - "15692:15692"
+
+  prometheus:
+    image: prom/prometheus
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=15d"
+
+# https://docs.docker.com/storage/volumes/#use-a-volume-with-docker-compose
+volumes:
+  prometheus-data: { }

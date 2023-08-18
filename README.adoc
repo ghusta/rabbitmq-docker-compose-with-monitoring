@@ -1,0 +1,44 @@
+= RabbitMQ : Docker Compose with monitoring
+:toc:
+:imagesdir: assets/images
+
+== Overview
+
+Provides a *docker compose* file to start a RabbitMQ server, with a Prometheus instance for scraping the metrics, and a Grafana instance to visualize them through a dashboard.
+
+== Run the stack
+
+.Prerequisites:
+* Docker must be https://docs.docker.com/engine/install/[installed].
+* Docker Compose  must be https://docs.docker.com/compose/install/[installed].
+
+Just launch :
+
+[source,bash]
+----
+docker compose up -d
+----
+
+== Try it
+
+=== Prometheus instance
+
+Open Prometheus instance in browser : http://localhost:9090/ +
+If needed, check the target's status here : http://localhost:9090/targets +
+To make a quick test, you can check the `rabbitmq_queues` metric here : http://localhost:9090/graph?g0.expr=rabbitmq_queues
+
+== References
+
+=== Documentation
+
+* https://www.rabbitmq.com/monitoring.html
+* https://www.rabbitmq.com/prometheus.html
+* https://www.rabbitmq.com/networking.html#ports[RabbitMQ ports], including :
+** *5672*, 5671: used by AMQP 0-9-1 and AMQP 1.0 clients without and with TLS
+** *15692*, 15691: Prometheus metrics, without and with TLS (only if the Prometheus plugin is enabled)
+* https://grafana.com/rabbitmq
+** https://grafana.com/grafana/dashboards/10991-rabbitmq-overview/
+
+=== Docker image
+
+* https://hub.docker.com/_/rabbitmq

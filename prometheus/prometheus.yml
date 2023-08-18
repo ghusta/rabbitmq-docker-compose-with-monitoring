@@ -1,0 +1,19 @@
+# Configuration examples :
+# https://prometheus.io/docs/introduction/first_steps/#configuring-prometheus
+# https://github.com/prometheus/prometheus/blob/master/documentation/examples/prometheus.yml
+
+# Configuration complete documentation :
+# https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# If target not inside a docker container, see : https://docs.docker.com/docker-for-windows/networking/#use-cases-and-workarounds
+
+scrape_configs:
+  - job_name: 'rabbitmq'
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: [ 'rabbitmq:15692' ]
